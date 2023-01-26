@@ -1,0 +1,11 @@
+#presentationManage {
+  margin: 1%;
+}
+#container {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+}
+#title-screen{
+  text-align: center;
+}

@@ -1,0 +1,36 @@
+{
+  "presenter": [
+    {
+      "id": 1,
+      "name": "Tizio",
+      "lname": "Rossi",
+      "titlePresentation": "New presentation",
+      "technologiesSharing": [
+        "VNC",
+        "WebRTC"
+      ],
+      "tecnologyChoosen": "VNC",
+      "statePresentation": "on"
+    }
+  ],
+  "participants": [
+    {
+      "id": 1,
+      "name": "Caio",
+      "lname": "Neri",
+      "company": "X-Company"
+    },
+    {
+      "id": 2,
+      "name": "Sempronio",
+      "lname": "Rossi",
+      "company": "A-Company"
+    },
+    {
+      "id": 3,
+      "name": "Mario",
+      "lname": "Bianchi",
+      "company": "M-Company"
+    }
+  ]
+}
