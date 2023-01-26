@@ -9,14 +9,19 @@ import { Presenter } from '../presenter';
 })
 export class ParticipantComponent {
   presenters: Presenter[] = [];
+  presentersSubscription: any;
 
   constructor(private backEnd:BackEndService){
 
   }
   ngOnInit(){
-    this.backEnd.getPresenters().subscribe((presenters) => {
+   this.presentersSubscription= this.backEnd.getPresenters().subscribe((presenters) => {
       this.presenters = presenters;
     });
   }
+
+  ngOnDestroy() {
   
+    this.presentersSubscription.unsubscribe();
+  }
 }

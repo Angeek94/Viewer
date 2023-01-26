@@ -15,6 +15,7 @@ export class PresenterComponent implements OnInit {
   startPresentationSubscription: any;
   stopPresentationSubscription: any;
   titleWindow: string = "Shared Window";
+  presentersSubscription: any;
 
   constructor(private backEnd: BackEndService, private route: ActivatedRoute) { }
 
@@ -23,7 +24,7 @@ export class PresenterComponent implements OnInit {
       this.id = +params['id'];
     });
 
-    this.backEnd.getPresenters().subscribe((presenters) => {
+   this.presentersSubscription= this.backEnd.getPresenters().subscribe((presenters) => {
       this.presenters = presenters;
     });
   }
@@ -45,7 +46,7 @@ export class PresenterComponent implements OnInit {
       }
 
     } else if (buttonManagePresentation != null && buttonManagePresentation.innerText == "Stop presentation") {
-      
+
       buttonManagePresentation.innerText = "Start presentation";
       this.stopPresentationSubscription = this.backEnd.stopPresentation(this.id, "VNC").subscribe((response) => { console.log(response) });
 
@@ -56,6 +57,7 @@ export class PresenterComponent implements OnInit {
     this.sub.unsubscribe();
     this.startPresentationSubscription.unsubscribe();
     this.stopPresentationSubscription.unsubscribe();
+    this.presentersSubscription.unsubscribe();
   }
 
 }
