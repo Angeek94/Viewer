@@ -1,7 +1,7 @@
 
-<canvas id="myCanvasPresentationOff" *ngIf="presenters[0].statePresentation=='off'" width="700" height="500" style="background: greenyellow;">
+<canvas id="myCanvasPresentationOff" *ngIf="this.presenters[0].statePresentation=='off'" width="700" height="500" style="background: greenyellow;">
   Your browser does not support the HTML canvas tag.
 </canvas>
-<canvas id="myCanvasPresentationOn"  *ngIf="presenters[0].statePresentation=='on'" width="700" height="500" style="background: burlywood">
+<canvas id="myCanvasPresentationOn"  *ngIf="this.presenters[0].statePresentation=='on'" width="700" height="500" style="background: burlywood">
   Your browser does not support the HTML canvas tag.
 </canvas>

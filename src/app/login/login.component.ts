@@ -40,13 +40,13 @@ export class LoginComponent {
     this.fname = this.fname.replaceAll(' ', '');
     this.lname = this.lname.replaceAll(' ', '');
 
-    const partecipant = this.participants.find(element => element.name == this.fname && element.lname == this.lname);
+    const participant = this.participants.find(element => element.name == this.fname && element.lname == this.lname);
     const presenter = this.presenters.find(element => element.name == this.fname && element.lname == this.lname);
     
 
 
-    if (partecipant != undefined) {
-      this.router.navigate(["participant",partecipant.id]);
+    if (participant != undefined) {
+      this.router.navigate(["participant",participant.id]);
 
     } else if (presenter != undefined && presenter.name == this.fname && presenter.lname == this.lname) {
       this.router.navigate(["presenter",presenter.id]);

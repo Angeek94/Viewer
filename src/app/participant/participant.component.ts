@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BackEndService } from '../back-end.service';
 import { Presenter } from '../presenter';
 
@@ -7,21 +7,27 @@ import { Presenter } from '../presenter';
   templateUrl: './participant.component.html',
   styleUrls: ['./participant.component.css']
 })
-export class ParticipantComponent {
+export class ParticipantComponent implements OnInit {
   presenters: Presenter[] = [];
   presentersSubscription: any;
 
-  constructor(private backEnd:BackEndService){
+  constructor(private backEnd: BackEndService) {
 
   }
-  ngOnInit(){
-   this.presentersSubscription= this.backEnd.getPresenters().subscribe((presenters) => {
+  getPresenters() {
+    this.backEnd.getPresenters().subscribe((presenters) => {
       this.presenters = presenters;
     });
   }
 
-  ngOnDestroy() {
+  ngOnInit() {
   
+      this.getPresenters();
+
+  }
+
+  ngOnDestroy() {
+
     this.presentersSubscription.unsubscribe();
   }
 }

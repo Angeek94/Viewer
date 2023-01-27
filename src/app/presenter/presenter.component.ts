@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackEndService } from '../back-end.service';
+import { ManagestateService } from '../managestate.service';
 import { Presenter } from '../presenter';
 
 @Component({
@@ -17,7 +18,7 @@ export class PresenterComponent implements OnInit {
   titleWindow: string = "Shared Window";
   presentersSubscription: any;
 
-  constructor(private backEnd: BackEndService, private route: ActivatedRoute) { }
+  constructor(private backEnd: BackEndService, private route: ActivatedRoute, private manageState:ManagestateService) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -27,6 +28,8 @@ export class PresenterComponent implements OnInit {
    this.presentersSubscription= this.backEnd.getPresenters().subscribe((presenters) => {
       this.presenters = presenters;
     });
+
+
   }
 
   startPresentation() {
@@ -35,6 +38,8 @@ export class PresenterComponent implements OnInit {
     if (buttonManagePresentation != null && buttonManagePresentation.innerText == "Start presentation") {
       buttonManagePresentation.innerText = "Stop presentation";
       this.startPresentationSubscription = this.backEnd.startPresentation(this.id, this.presenters[0].tecnologyChoosen).subscribe((response) => { console.log(response) });
+
+      this.manageState.setStatePresentation(this.presenters[0].statePresentation);
 
       if (this.presenters[0].tecnologyChoosen == "VNC") {
 
@@ -49,6 +54,7 @@ export class PresenterComponent implements OnInit {
 
       buttonManagePresentation.innerText = "Start presentation";
       this.stopPresentationSubscription = this.backEnd.stopPresentation(this.id, "VNC").subscribe((response) => { console.log(response) });
+      this.manageState.setStatePresentation(this.presenters[0].statePresentation);
 
     }
   }
